@@ -44,7 +44,7 @@ module raw_wheel(or_idiam=50, or_diam=3, h=6)
 //-- This module creates a raw-wheel with the connections for
 //-- a futaba 3003 servo. 
 //-------------------------------------------------------
-module Servo_wheel(or_idiam=50, or_diam=3, h=6)
+module Servo_wheel(or_idiam=60, or_diam=3, h=6)
 {
   difference() {
       raw_wheel(or_idiam=or_idiam, or_diam=or_diam, h=h);
@@ -61,10 +61,10 @@ module Servo_wheel(or_idiam=50, or_diam=3, h=6)
 //-- Test!
 difference(){
 Servo_wheel();
-translate ([18,0,-5]) cylinder(r=7,h=10);
-translate ([-18,0,-5]) cylinder(r=7,h=10);
-translate ([0,18,-5]) cylinder(r=7,h=10);
-translate ([0,-18,-5]) cylinder(r=7,h=10);
+translate ([21,0,-5]) cylinder(r=8,h=10);
+translate ([-21,0,-5]) cylinder(r=8,h=10);
+translate ([0,21,-5]) cylinder(r=8,h=10);
+translate ([0,-21,-5]) cylinder(r=8,h=10);
 }
 
 
