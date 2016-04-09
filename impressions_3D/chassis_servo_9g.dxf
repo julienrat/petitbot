@@ -1115,9 +1115,9 @@ AcDbViewportTableRecord
  21
 1
  12
-42.59886792452873
+111.4251478663053
  22
-15.60679245283034
+55.30591280955297
  13
 0
  23
@@ -1143,7 +1143,7 @@ AcDbViewportTableRecord
  37
 0
  40
-46.90566037735896
+223.6636179798098
  41
 1.681818181818182
  42
@@ -2257,7 +2257,7 @@ AcDbLayerTableRecord
   2
 porte_crayon
  70
-    0
+    1
  62
     7
   6
@@ -2279,7 +2279,7 @@ AcDbLayerTableRecord
   2
 servo
  70
-    0
+    1
  62
     7
   6
@@ -3279,47 +3279,9 @@ AcDbLine
  21
 70
   0
-LWPOLYLINE
-  5
-67
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbPolyline
- 90
-    4
- 70
-    1
- 43
-0
- 10
-0
- 20
-27
- 10
-0
- 20
-27
- 10
-0
- 20
-43
- 10
-0
- 20
-43
-  0
 LINE
   5
-68
+67
 100
 AcDbEntity
   8
@@ -3343,7 +3305,7 @@ AcDbLine
   0
 LINE
   5
-69
+68
 100
 AcDbEntity
   8
@@ -3367,7 +3329,7 @@ AcDbLine
   0
 ARC
   5
-6A
+69
 100
 AcDbEntity
   8
@@ -3395,7 +3357,7 @@ AcDbArc
   0
 LINE
   5
-6B
+6A
 100
 AcDbEntity
   8
@@ -3419,7 +3381,7 @@ AcDbLine
   0
 LINE
   5
-6C
+6B
 100
 AcDbEntity
   8
@@ -3443,7 +3405,7 @@ AcDbLine
   0
 ARC
   5
-6D
+6C
 100
 AcDbEntity
   8
@@ -3471,7 +3433,7 @@ AcDbArc
   0
 CIRCLE
   5
-6E
+6D
 100
 AcDbEntity
   8
@@ -3493,7 +3455,7 @@ AcDbCircle
   0
 LINE
   5
-6F
+6E
 100
 AcDbEntity
   8
@@ -3512,6 +3474,30 @@ AcDbLine
 0
  11
 5
+ 21
+16
+  0
+LINE
+  5
+6F
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbLine
+ 10
+5
+ 20
+16
+ 11
+28
  21
 16
   0
@@ -3531,13 +3517,13 @@ ByLayer
 100
 AcDbLine
  10
-5
+28
  20
 16
  11
 28
  21
-16
+0
   0
 LINE
   5
@@ -3555,11 +3541,11 @@ ByLayer
 100
 AcDbLine
  10
-28
+0
  20
-16
+0
  11
-28
+5
  21
 0
   0
@@ -3581,11 +3567,11 @@ AcDbLine
  10
 0
  20
-0
+70
  11
 5
  21
-0
+70
   0
 LINE
   5
@@ -3603,13 +3589,13 @@ ByLayer
 100
 AcDbLine
  10
-0
+5
  20
-0
+70
  11
-0
+5
  21
-27
+54
   0
 LINE
   5
@@ -3627,13 +3613,13 @@ ByLayer
 100
 AcDbLine
  10
-0
- 20
-70
- 11
 5
+ 20
+54
+ 11
+28
  21
-70
+54
   0
 LINE
   5
@@ -3651,65 +3637,17 @@ ByLayer
 100
 AcDbLine
  10
-5
+28
  20
-70
- 11
-5
- 21
 54
+ 11
+28
+ 21
+70
   0
 LINE
   5
 76
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbLine
- 10
-5
- 20
-54
- 11
-28
- 21
-54
-  0
-LINE
-  5
-77
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbLine
- 10
-28
- 20
-54
- 11
-28
- 21
-70
-  0
-LINE
-  5
-78
 100
 AcDbEntity
   8
@@ -3733,31 +3671,7 @@ AcDbLine
   0
 LINE
   5
-79
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbLine
- 10
-0
- 20
-70
- 11
-0
- 21
-43
-  0
-LINE
-  5
-7A
+77
 100
 AcDbEntity
   8
@@ -3776,6 +3690,30 @@ AcDbLine
 0
  11
 60
+ 21
+0
+  0
+LINE
+  5
+78
+100
+AcDbEntity
+  8
+0
+  6
+ByLayer
+ 62
+  256
+370
+   -1
+100
+AcDbLine
+ 10
+0
+ 20
+70
+ 11
+0
  21
 0
   0
