@@ -3695,28 +3695,6 @@ AcDbLine
  21
 0
   0
-CIRCLE
-  5
-78
-100
-AcDbEntity
-  8
-0
-  6
-ByLayer
- 62
-  256
-370
-   -1
-100
-AcDbCircle
- 10
-50
- 20
-30
- 40
-14.14213562373095
-  0
 ENDSEC
   0
 SECTION
