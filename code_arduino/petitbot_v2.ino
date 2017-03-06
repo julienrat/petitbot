@@ -1,156 +1,204 @@
+/*
+  Petitbot V2
+  Requiert la bibliotheque ULTRASONIC disponible nativement dans arduino ou à cette adresse https://github.com/ErickSimoes/Ultrasonic
 
+*/
 
 #include <ESP8266WiFi.h>
-//////////////////////
-// WiFi Definitions //
-//////////////////////
-const char WiFiAPPSK[] = "1234567890"; //password
 
-/////////////////////
-// Pin Definitions //
-/////////////////////
+//Bibliothèques Wifi
+#include <DNSServer.h>
+#include <ESP8266mDNS.h>
+#include <ESP8266WebServer.h>
 
+ESP8266WebServer server(80); //objet serveur
+const char* hostAP = "PetitBot"; // nom du point d'acces petitBot
+
+//Bibliotheque Servo
 #include <Servo.h>
 
-Servo myservo1;
+Servo servo1; // creation
+Servo servo2;
+Servo servo3;
 
-Servo myservo2;
+Servo servoG;
+Servo servoD;
 
-WiFiServer server(80);
-int vitesse = 0;
-void setup()
-{
-  initHardware();
-  setupWiFi();
-  server.begin();
-  myservo1.attach(5);
-  myservo2.attach(4);
-  myservo1.write(91);
-  myservo2.write(93);
+// Bibliotheque capteur ultrason
+#include <Ultrasonic.h>
+Ultrasonic Ultrasonic1(D5, D0);
+
+
+// Constantes de Broches
+const int pin_led1 = D3; // pin led 1
+const int pin_led2 = D4; // pin led 2
+
+const int pin_servoG = D1; // pin servo gauche
+const int pin_servoD = D2; // pin servo droit
+
+const int pin_servo1 = D8; // pin servo 1
+const int pin_servo2 = D7; // pin servo 2
+const int pin_servo3 = D6; // pin servo 3
+
+const int pin_dist1 = D5; // pin capteur de distance 1
+const int pin_dist2 = D0; // pin capteur de distance 2
+
+void setup() {
+  Serial.begin (9600); // initialisation de la connexion série
+
+  //initialisation des broches led :
+  pinMode(pin_led1, OUTPUT);
+  pinMode(pin_led2, OUTPUT);
+
+  //initialisation des servo
+  servoG.attach(pin_servoG);
+  servoD.attach(pin_servoD);
+
+  servo1.attach(pin_servo1);
+  servo2.attach(pin_servo2);
+  servo3.attach(pin_servo3);
+
+  //Initialisation du WIFI
+  WiFi.mode(WIFI_AP);
+  WiFi.softAP(hostAP, "", 2);
+  MDNS.begin(hostAP);
+  MDNS.addService("http", "tcp", 80);
+  serveur();
+  server.begin(); //
 
 }
 
-void loop()
-{
-  // Check if a client has connected
-  WiFiClient client = server.available();
-  if (!client) {
-    return;
-  }
+void loop() {
+  server.handleClient();
+}
 
-  // Read the first line of the request
-  String req = client.readStringUntil('\r');
-  Serial.println(req);
-  client.flush();
+void serveur() {
 
-  // Match the request
-  int val = -1;
+  server.on("/led1_on", HTTP_GET, []() {
+    digitalWrite(pin_led1, HIGH);
+    server.send(200, "text/json", "Led1 allumée");
+  });
 
-  if (req.indexOf("/stop") != -1)
-    val = 0;
-  else if (req.indexOf("/avance") != -1) {
-    vitesse = req.substring(12).toInt();
-    val = 1;
-  }
-  else if (req.indexOf("/recule") != -1) {
-    vitesse = req.substring(12).toInt();
-    val = 2;
-  }
-  else if (req.indexOf("/gauche") != -1) {
-    vitesse = req.substring(12).toInt();
-    val = 3;
-  }
-  else if (req.indexOf("/droite") != -1) {
-    Serial.println(req.indexOf("/droite"));
-    vitesse = req.substring(12).toInt();
-    val = 4;
-  }
-  else if (req.indexOf("/read") != -1)
-    val = 5;
+  server.on("/led1_off", HTTP_GET, []() {
+    digitalWrite(pin_led1, LOW);
+    server.send(200, "text/json", "Led1 éteinte");
+  });
 
+  server.on("/led2_on", HTTP_GET, []() {
+    digitalWrite(pin_led2, HIGH);
+    server.send(200, "text/json", "Led2 allumée");
+  });
 
+  server.on("/led2_off", HTTP_GET, []() {
+    digitalWrite(pin_led2, LOW);
+    server.send(200, "text/json", "Led2 éteinte");
+  });
 
-  // Prepare the web page response. Start with the common header:
+  server.on("/servo1", HTTP_GET, []() {
+    String angle = server.arg("angle");
+    servo1.write(angle.toInt());
+    server.send(200, "text/json", "Servo1 : " + angle);
+  });
+
+  server.on("/servo2", HTTP_GET, []() {
+    String angle = server.arg("angle");
+    servo2.write(angle.toInt());
+    server.send(200, "text/json", "Servo2 : " + angle);
+  });
+
+  server.on("/servo3", HTTP_GET, []() {
+    String angle = server.arg("angle");
+    servo3.write(angle.toInt());
+    server.send(200, "text/json", "Servo3 : " + angle);
+  });
+
+  server.on("/servoG", HTTP_GET, []() {
+    String angle = server.arg("angle");
+    servoG.write(angle.toInt());
+    server.send(200, "text/json", "ServoG : " + angle);
+  });
+
+  server.on("/servoD", HTTP_GET, []() {
+    String angle = server.arg("angle");
+    servoD.write(angle.toInt());
+    server.send(200, "text/json", "ServoD : " + angle);
+  });
+
+  server.on("/avance", HTTP_GET, []() {
+    String vitesse = server.arg("vitesse");
+    if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
+    servoG.write(90 + vitesse.toInt());
+    servoD.write(90 - vitesse.toInt());
+    server.send(200, "text/json", "avance : " + String(100 * (90 + vitesse.toInt()) / 180) + " %");
+  });
+
+  server.on("/recule", HTTP_GET, []() {
+    String vitesse = server.arg("vitesse");
+    if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
+    servoG.write(90 - vitesse.toInt());
+    servoD.write(90 + vitesse.toInt());
+    server.send(200, "text/json", "recule : " + String(100 * (90 + vitesse.toInt()) / 180) + " %");
+  });
+
+  server.on("/droite", HTTP_GET, []() {
+    String vitesse = server.arg("vitesse");
+    if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
+    servoG.write(90 + vitesse.toInt());
+    servoD.write(90 + vitesse.toInt());
+    server.send(200, "text/json", "droite : " + String(100 * (90 + vitesse.toInt()) / 180) + " %");
+  });
+  server.on("/gauche", HTTP_GET, []() {
+    String vitesse = server.arg("vitesse");
+    if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
+    servoG.write(90 - vitesse.toInt());
+    servoD.write(90 - vitesse.toInt());
+    server.send(200, "text/json", "droite : " + String(100 * (90 + vitesse.toInt()) / 180) + " %");
+  });
+
+  server.on("/stop", HTTP_GET, []() {
+    servoG.write(90);
+    servoD.write(90);
+    server.send(200, "text/json", "STOP !");
+  });
+
+  server.on("/analog", HTTP_GET, []() {
+    int value = analogRead(A0);
+    server.send(200, "text/json", String(value));
+  });
+
+  server.on("/distance", HTTP_GET, []() {
+    int distance = Ultrasonic1.distanceRead();
+    server.send(200, "text/json", String(distance));
+  });
+  
+  server.on("/", HTTP_GET, []() {
+    pageweb();
+  });
+
+}
+
+void pageweb() {
+  // Prepare la page web de réponse. on commence par le "header" commun; (le code HTML sera ecrit dans la chaine de carcatere s).
   String s = "HTTP/1.1 200 OK\r\n";
   s += "Content-Type: text/html\r\n\r\n";
-  // s += "<!DOCTYPE HTML>\r\n<html>\r\n";
-  // if (req.indexOf("/commande") != -1 ) {
-  //   s += "<input type=\"button\" onclick=\"location.href='192.168.4.1/led/1';\" value=\" OFF \" />";
-  //   s += "<input type=\"button\" onclick=\"location.href='192.168.4.1/led/0';\" value=\" ON \" />";
+  s += "<!DOCTYPE HTML>\r\n";
+  s += "<html>\r\n";
+  s += "<center>";
+  s += "</h1>";
+  s += "<br>"; //aller a la ligne
+  s += "<br>"; //aller a la ligne
+  s += "<a href=\"/stop\"\"><button style=\"font-size:200%; width: 18%\"\>Stop </button></a>\r\n";// creer un boutton "Stop"
+  s += "<a href=\"/avance\"\"><button style=\"font-size:200%; width: 18%\"\>Avance </button></a>\r\n";
+  s += "<a href=\"/recule\"\"><button style=\"font-size:200%; width: 18%\"\>Recule </button></a>\r\n";
+  s += "<a href=\"/droite\"\"><button style=\"font-size:200%; width: 18%\"\>Droite </button></a>\r\n";
+  s += "<a href=\"/gauche\"\"><button style=\"font-size:200%; width: 18%\"\>Gauche </button></a><br />\r\n";
+  s += "</center>";
 
-  // }
-  // If we're setting the LED, print out a message saying we did
-  if (val == 2 ) //avance
-  {
-    s += " avance ";
-    s += vitesse ;
-    myservo1.write(90-vitesse);  //avance
-    myservo2.write(90+vitesse);  //avance
-  }
-  if (val == 1)//this left over from the sparkfun demo, not currently used
-  { // If we're reading pins, print out those values:
-    s += " recule ";
-    s += vitesse ;
-    myservo1.write(90+vitesse);  //recule
-    myservo2.write(90-vitesse);  //recule
-  }
-  if (val == 0)//this left over from the sparkfun demo, not currently used
-  { // If we're reading pins, print out those values:
-    s += " stop ";
-    myservo1.write(91);  //stop
-    myservo2.write(93);  //stop
-  }
-  if (val == 3)//this left over from the sparkfun demo, not currently used
-  { // If we're reading pins, print out those values:
-    s += " gauche ";
-    s += vitesse ;
-    myservo1.write(90+vitesse);  //gauche
-    myservo2.write(90+vitesse);  //recule
-  }
-  if (val == 4)//this left over from the sparkfun demo, not currently used
-  { // If we're reading pins, print out those values:
-    s += " droite ";
-    s += vitesse ;
-    myservo1.write(90-vitesse);  //droite
-    myservo2.write(90-vitesse);  //recule
-  }
-  if (val == 5)//this left over from the sparkfun demo, not currently used
-  { // If we're reading pins, print out those values:
-    s += analogRead(A0);;
+  s += "</html>\n"; //Fin de la page Web
 
-  }
-
-
-  // s += "</html>\n";
-
-  // Send the response to the client
-  client.print(s);
+  // Envoie de la reponse au navigateur
+  server.send(200, "text/html", s);
   delay(1);
-  Serial.println("Client disconnected");
-  client.flush();
+
 
 }
-
-void setupWiFi()
-{
-  WiFi.mode(WIFI_AP);
-  uint8_t mac[WL_MAC_ADDR_LENGTH];
-  WiFi.softAPmacAddress(mac);
-  String macID = String(mac[WL_MAC_ADDR_LENGTH - 2], HEX) +
-                 String(mac[WL_MAC_ADDR_LENGTH - 1], HEX);
-  macID.toUpperCase();
-  String AP_NameString = "PetitBot";
-
-  char AP_NameChar[AP_NameString.length() + 1];
-  memset(AP_NameChar, 0, AP_NameString.length() + 1);//zero out AP_NameChar
-
-  for (int i = 0; i < AP_NameString.length(); i++)
-    AP_NameChar[i] = AP_NameString.charAt(i);
-
-  WiFi.softAP(AP_NameChar, WiFiAPPSK, 7);
-}
-
-void initHardware()
-{
-  Serial.begin(115200);
-} //See more at: http://www.esp8266.com/viewtopic.php?f=29&t=6419#sthash.gd1tJhwU.dpuf
