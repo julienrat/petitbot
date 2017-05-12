@@ -113,18 +113,22 @@ void serveur() {
   });
 
   server.on("/servoG", HTTP_GET, []() {
+    servoG.attach(pin_servoG);    
     String angle = server.arg("angle");
     servoG.write(angle.toInt());
     server.send(200, "text/json", "ServoG : " + angle);
   });
 
   server.on("/servoD", HTTP_GET, []() {
+    servoD.attach(pin_servoD);
     String angle = server.arg("angle");
     servoD.write(angle.toInt());
     server.send(200, "text/json", "ServoD : " + angle);
   });
 
   server.on("/avance", HTTP_GET, []() {
+    servoG.attach(pin_servoG);
+    servoD.attach(pin_servoD);
     String vitesse = server.arg("vitesse");
     if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
     servoG.write(90 + vitesse.toInt());
@@ -133,6 +137,8 @@ void serveur() {
   });
 
   server.on("/recule", HTTP_GET, []() {
+    servoG.attach(pin_servoG);
+    servoD.attach(pin_servoD);
     String vitesse = server.arg("vitesse");
     if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
     servoG.write(90 - vitesse.toInt());
@@ -141,6 +147,8 @@ void serveur() {
   });
 
   server.on("/droite", HTTP_GET, []() {
+    servoG.attach(pin_servoG);
+    servoD.attach(pin_servoD);
     String vitesse = server.arg("vitesse");
     if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
     servoG.write(90 + vitesse.toInt());
@@ -148,6 +156,8 @@ void serveur() {
     server.send(200, "text/json", "droite : " + String(100 * (90 + vitesse.toInt()) / 180) + " %");
   });
   server.on("/gauche", HTTP_GET, []() {
+    servoG.attach(pin_servoG);
+    servoD.attach(pin_servoD);
     String vitesse = server.arg("vitesse");
     if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
     servoG.write(90 - vitesse.toInt());
@@ -156,8 +166,9 @@ void serveur() {
   });
 
   server.on("/stop", HTTP_GET, []() {
-    servoG.write(90);
-    servoD.write(90);
+    servoG.detach(pin_servoG);
+    servoD.detach(pin_servoD);
+    
     server.send(200, "text/json", "STOP !");
   });
 
