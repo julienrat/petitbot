@@ -167,7 +167,7 @@ void serveur() {
 
   server.on("/stop", HTTP_GET, []() {
     servoG.detach(pin_servoG);
-    servoD.detach(pin_servoD);
+   // servoD.detach(pin_servoD);
     
     server.send(200, "text/json", "STOP !");
   });
