@@ -51,8 +51,7 @@ void setup() {
   pinMode(pin_led2, OUTPUT);
 
   //initialisation des servo
-  servoG.attach(pin_servoG);
-  servoD.attach(pin_servoD);
+
 
   servo1.attach(pin_servo1);
   servo2.attach(pin_servo2);
