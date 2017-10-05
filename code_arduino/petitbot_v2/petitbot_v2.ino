@@ -165,8 +165,10 @@ void serveur() {
   });
 
   server.on("/stop", HTTP_GET, []() {
-   servoG.detach();
-   servoD.detach();   
+  // servoG.detach();
+  // servoD.detach();   
+	servoD.write(90);
+	servoG.write(90);
     server.send(200, "text/json", "STOP !");
   });
 
