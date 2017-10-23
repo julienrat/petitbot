@@ -1,0 +1,25 @@
+hostAP	./petitbot_v2.ino	/^const char* hostAP = "PetitBot"; \/\/ nom du point d'acces petitBot$/;"	v
+loop	./petitbot_v2.ino	/^void loop() {$/;"	f
+pageweb	./petitbot_v2.ino	/^void pageweb() {$/;"	f
+pin_dist1	./petitbot_v2.ino	/^const int pin_dist1 = D5; \/\/ pin capteur de distance 1$/;"	v
+pin_dist2	./petitbot_v2.ino	/^const int pin_dist2 = D0; \/\/ pin capteur de distance 2$/;"	v
+pin_led1	./petitbot_v2.ino	/^const int pin_led1 = D3; \/\/ pin led 1$/;"	v
+pin_led2	./petitbot_v2.ino	/^const int pin_led2 = D4; \/\/ pin led 2$/;"	v
+pin_servo1	./petitbot_v2.ino	/^const int pin_servo1 = D8; \/\/ pin servo 1$/;"	v
+pin_servo2	./petitbot_v2.ino	/^const int pin_servo2 = D7; \/\/ pin servo 2$/;"	v
+pin_servo3	./petitbot_v2.ino	/^const int pin_servo3 = D6; \/\/ pin servo 3$/;"	v
+pin_servoD	./petitbot_v2.ino	/^const int pin_servoD = D2; \/\/ pin servo droit$/;"	v
+pin_servoG	./petitbot_v2.ino	/^const int pin_servoG = D1; \/\/ pin servo gauche$/;"	v
+serveur	./petitbot_v2.ino	/^void serveur() {$/;"	f
+servo1	./petitbot_v2.ino	/^Servo servo1; \/\/ creation$/;"	v
+servo2	./petitbot_v2.ino	/^Servo servo2;$/;"	v
+servo3	./petitbot_v2.ino	/^Servo servo3;$/;"	v
+servoD	./petitbot_v2.ino	/^Servo servoD;$/;"	v
+servoG	./petitbot_v2.ino	/^Servo servoG;$/;"	v
+setup	./petitbot_v2.ino	/^void setup() {$/;"	f
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	Development	//
