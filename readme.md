@@ -3,7 +3,7 @@
 2. Le Petit Bot c'est un matériel facile à assembler par des jeunes à partir de 8 ans
 3. Le Petit Bot ne coûte pas plus de 15 euros.
 
-
+Si vous repoduisez le projet, merci de communiquer avec le hastag #petitbot
 ## Installation
 
 TODO: Describe the installation process
@@ -25,7 +25,7 @@ TODO: Write usage instructions
 TODO: Write history
 
 ## Credits
-
+CCbyNCSA Les petits débrouillards 2016
 TODO: Write credits
 
 ## License
