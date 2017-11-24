@@ -1,54 +1,130 @@
+<!-- Petitbot, sous licence libre CCbyNCSA Les Petits Débrouillards 2016-2017
+
+Le Petitbot a été conçu et imaginé par Julien Rat et Guilème, retravaillé par Antony Auffret, le CSS de la télécommande réalisé par Johann David. Adaptation du logiciel BlockCode de Zou-xuan https://github.com/zou-xuan/BlockCode par Julien Rat.
+
+La version 3 du code est disponible sur https://github.com/julienrat/petitbot
+
+Pour toute utilisation en public, merci de tweeter, facebooker ou instagrammer avec le hashtag #petitbot et de citer vos sources !
+ --> 
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Télécommande</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-  <link rel="icon" type="image/png" href="images/favicon.png" />
-  <script src="jquery.min.js"></script>
-  <script src="bootstrap/js/bootstrap.js"></script>
+	<title>Télécommande</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="icon" type="image/png" href="images/favicon.png" />
 
-  <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="index.html">PetitBot</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="block.html">Programmer</a></li>
-      <li  class="active"><a href="telecommande.html">Télécommande</a></li>      
-      <li><a href="doc.html">Documentation</a></li>
-      <li><a href="config.html">Configurer</a></li>
-      <li><a href="upload.html">Mise à jour</a></li>
-    </ul>
-  </div>
-</nav>
+
+	<style>
+		.all {
+			display : flex;
+			flex-direction : column;
+			padding : 0;
+			height : 100%;
+		}
+
+		.navbar {
+			margin-bottom : 0;
+			flex-grow : 0;
+		}
+
+		.remote-container {
+			padding : 1vw;
+			display : flex;
+			flex-grow : 1;
+			/*background-color : orange;
+			border : 2px solid green;*/
+			width : 100%;
+		}
+
+		.remote-button {
+			width : calc(3em + 6vw);
+		}
+
+		.remote-up {
+			position : absolute;
+			left : calc(50% - 3vw - 1.5em);
+		}
+		.remote-down {
+			position : absolute;
+			bottom : 1vw;
+			left : calc(50% - 3vw - 1.5em);
+			transform:          rotate(180deg);
+				-ms-transform:      rotate(180deg);
+				-moz-transform:     rotate(180deg);
+				-webkit-transform:  rotate(180deg);
+				-o-transform:       rotate(180deg);
+		}
+		.leftright {
+			display : flex;
+			align-items : center;
+			width : 100%;
+		}
+		.leftdiv {
+			flex-grow : 1;
+		}
+		.rightdiv {
+			flex-grow : 1;
+			text-align : right;
+		}
+		.remote-left {
+			transform:          rotate(270deg);
+				-ms-transform:      rotate(270deg);
+				-moz-transform:     rotate(270deg);
+				-webkit-transform:  rotate(270deg);
+				-o-transform:       rotate(270deg);
+		}
+		.remote-right {
+			transform:          rotate(90deg);
+				-ms-transform:      rotate(90deg);
+				-moz-transform:     rotate(90deg);
+				-webkit-transform:  rotate(90deg);
+				-o-transform:       rotate(90deg);
+		}
+
+		html, body {
+			height: 100% !important;
+		}
+	</style>
+
 </head>
-	
+
 <body>
+	<div class="container-fluid all">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">PetitBot</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="block.html">Programmer</a></li>
+					<li  class="active"><a href="telecommande.html">Télécommande</a></li>      
+					<li><a href="doc.html">Documentation</a></li>
+					<li><a href="config.html">Configurer</a></li>
+					<li><a href="upload.html">Mise à jour</a></li>
+				</ul>
+			</div>
+		</nav>
 
-<div class="row"> 
-  <div class="column">
-	  <svg width="180" height="180" id="rect">
-		<rect width="90" height="90" style="fill:rgb(255,255,255)" />
-      </svg>
-	<button class="button_left" id="LEFT"></button>
-  </div>
-  <div class="column"> 
-	<button class="button" id="UP"></button>
-	<button class="button_down" id="DOWN"></button>
-  </div>
-  <div class="column">
-	  <svg width="180" height="180" id="rect">
-		<rect width="90" height="90" style="fill:rgb(255,255,255)" />
-      </svg>
-	<button class="button_right" id="RIGHT"></button>
-  </div>
-</div>
+		<div class="remote-container">
+			<img src="images/arrow.svg" id="UP" class="remote-button remote-up" />
+			<img src="images/arrow.svg" id="DOWN" class="remote-button remote-down" />
+			<div class="leftright">
+				<div class="leftdiv">
+					<img src="images/arrow.svg" id ="RIGHT" class="remote-button remote-left" />
+				</div>
+				<div class="rightdiv">
+					<img src="images/arrow.svg" id="LEFT" class="remote-button remote-right" />
+				</div>
+			</div>
+		</div>
+	</div>
 
-
-
-<script>
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.js"></script>
+	<script>
 document.getElementById("UP").addEventListener("touchstart",avance);
 document.getElementById("UP").addEventListener("touchend", stop);
 
@@ -166,229 +242,6 @@ function stop() {
 
 
 </script>
-<style>
-.button{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	background:url('images/arrow.svg');
-	
-}
-.button_left{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	background:url('images/arrow.svg');
-	transform:          rotate(270deg);
-	-ms-transform:      rotate(270deg);
-	-moz-transform:     rotate(270deg);
-	-webkit-transform:  rotate(270deg);
-	-o-transform:       rotate(270deg);
-}
-.button_down{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	background:url('images/arrow.svg');
-	transform:          rotate(180deg);
-	-ms-transform:      rotate(180deg);
-	-moz-transform:     rotate(180deg);
-	-webkit-transform:  rotate(180deg);
-	-o-transform:       rotate(180deg);
-}
-.button_right{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	max-width: 100%;
-	background:url('images/arrow.svg');
-	transform:          rotate(90deg);
-	-ms-transform:      rotate(90deg);
-	-moz-transform:     rotate(90deg);
-	-webkit-transform:  rotate(90deg);
-	-o-transform:       rotate(90deg);
-}
 
-/* Create four equal columns that floats next to each other */
-.column {
-    float: left;
-    width: 25%;
-    padding: 10px;
-}
-
-.column img {
-    margin-top: 12px;
-    width: 100%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.container {
-    width: 800px;
-    height: 120px;
-}
-
-
-/* Responsive layout - makes a two column-layout instead of four columns */
-@media (max-width: 600px) {
-    .button{
-	display:inline-block;
-	background:none;
-	width: 95px;
-	height: 95px;
-	background:url('images/arrow_mini.svg');
-	
-}
-#rect{
-width: 95px;
-height: 95px;
-}
-.button_left{
-	display:inline-block;
-	background:none;
-	width: 95px;
-	height: 95px;
-	background:url('images/arrow_mini.svg');
-	transform:          rotate(270deg);
-	-ms-transform:      rotate(270deg);
-	-moz-transform:     rotate(270deg);
-	-webkit-transform:  rotate(270deg);
-	-o-transform:       rotate(270deg);
-}
-.button_down{
-	display:inline-block;
-	background:none;
-	width: 95px;
-	height: 95px;
-	background:url('images/arrow_mini.svg');
-	transform:          rotate(180deg);
-	-ms-transform:      rotate(180deg);
-	-moz-transform:     rotate(180deg);
-	-webkit-transform:  rotate(180deg);
-	-o-transform:       rotate(180deg);
-}
-.button_right{
-	display:inline-block;
-	background:none;
-	width: 95px;
-	height: 95px;
-	background:url('images/arrow_mini.svg');
-	transform:          rotate(90deg);
-	-ms-transform:      rotate(90deg);
-	-moz-transform:     rotate(90deg);
-	-webkit-transform:  rotate(90deg);
-	-o-transform:       rotate(90deg);
-}
-
-/* Create four equal columns that floats next to each other */
-.column {
-    float: left;
-    width: 25%;
-     margin-left: 10px;
-}
-
-.column img {
-    margin-top: 0px;
-    width: 100%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.container {
-    width: 600px;
-    height: 100px;
-}
-
-}
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media (max-width: 200px) {
-    .button{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	background:url('images/arrow.svg');
-	
-}
-.button_left{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	background:url('images/arrow.svg');
-	transform:          rotate(270deg);
-	-ms-transform:      rotate(270deg);
-	-moz-transform:     rotate(270deg);
-	-webkit-transform:  rotate(270deg);
-	-o-transform:       rotate(270deg);
-}
-.button_down{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	background:url('images/arrow.svg');
-	transform:          rotate(180deg);
-	-ms-transform:      rotate(180deg);
-	-moz-transform:     rotate(180deg);
-	-webkit-transform:  rotate(180deg);
-	-o-transform:       rotate(180deg);
-}
-.button_right{
-	display:inline-block;
-	background:none;
-	width: 180px;
-	height: 180px;
-	max-width: 100%;
-	background:url('images/arrow.svg');
-	transform:          rotate(90deg);
-	-ms-transform:      rotate(90deg);
-	-moz-transform:     rotate(90deg);
-	-webkit-transform:  rotate(90deg);
-	-o-transform:       rotate(90deg);
-}
-
-/* Create four equal columns that floats next to each other */
-.column {
-    float: left;
-    margin-left: 20px;
-    width: 30%;
-    
-}
-
-.column img {
-    margin-top: 12px;
-    width: 100%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.container {
-    width: 360px;
-    height: 50px;
-}
-
-}
-</style>
 </body>
 </html>
