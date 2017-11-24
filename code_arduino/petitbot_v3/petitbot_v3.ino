@@ -463,28 +463,30 @@ static void handle_update_progress_cb(AsyncWebServerRequest *request, String fil
   }
 }
 void set_wifi() {
-
+WiFi.hostname(name.c_str());
   if (access_point.equals("access_point")) {
     Serial.println(" ");
     Serial.println("PetitBot : " + String(version));
     Serial.println("Configuration Point d'acces");
     Serial.print("nom du point d'acces : ");
-    Serial.println(name);
+    Serial.println(name);    
     WiFi.mode(WIFI_AP);
-    WiFi.hostname(name.c_str());
+    
     WiFi.softAP(name.c_str(), "", canal.toInt());
   } else {
     Serial.print("Connexion au reseau : ");
-    Serial.println(ssid);
+    Serial.println(ssid);   
     WiFi.mode(WIFI_STA);
 
     int timeout = 0;
     WiFi.begin(ssid.c_str(), mdp.c_str());
+
     Serial.println("connection en cours...");
     while (WiFi.status() != WL_CONNECTED) {
       delay(500);
       timeout++;
       Serial.print(".");
+
       if (timeout > 50) {
         Serial.println("TimeOUT");
         access_point = "access_point";
@@ -493,6 +495,10 @@ void set_wifi() {
 
       }
     }
+    Serial.println("");
+    Serial.println("WiFi connected");
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
   }
 
 
