@@ -13,7 +13,7 @@ Pour flasher le PetitBot plusieures solutions s'offrent à vous :
 ## Compiler les sources
 
 ## Flasher les binaires
-Téléchargez le fichier zip
+Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
 ### Sous Linux
 
