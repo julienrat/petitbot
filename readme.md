@@ -21,7 +21,7 @@ Sous windows, vous aurez besoin du logiciel ESP8266Flasher.EXE (présent dans le
 ![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture.PNG "Logo Title Text 1")
 
 
-Dans l'onglet config, sélectionnez le fichier petitbot_v3.ino.d1_mini.bin et fixez l'adresse de flashage à 0x00000, en dessous sélectionnez le fichier petitbot_v3.spiffs.bin et fixez l'adresse de flashage à 0X10000
+Dans l'onglet config, sélectionnez le fichier petitbot_v3.ino.d1_mini.bin et fixez l'adresse de flashage à 0x00000, en dessous sélectionnez le fichier petitbot_v3.spiffs.bin et fixez l'adresse de flashage à 0x10000
 
 
 ![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture2.PNG "Logo Title Text 1")
