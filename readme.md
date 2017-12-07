@@ -47,6 +47,8 @@ Placez vous dans le répertoire décompressé, puis lancez la commande suivante 
 ```./esptool.py --port /dev/ttyUSB0 write_flash 0x100000 petitbot_v3.spiffs.bin 0x00000 petitbot_v3.ino.d1_mini.bin```
 
 
+## Usage
+Connectez vous au réseau wifi "petitbot" puis entrez l'adresse suivante dans un navigateur http://192.168.4.1
 
 ## Credits
 CCbyNCSA Les petits débrouillards 2016
