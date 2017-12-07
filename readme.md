@@ -15,7 +15,7 @@ Pour flasher le PetitBot plusieures solutions s'offrent à vous :
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
-Sous windows, vous aurez besoin du logiciel ESP8266Flasher.EXE (présent dans le zip), branchez le wemos, installez le driver Wemos https://wiki.wemos.cc/_media/file:ch341ser_win.zip  puis sélectionnez le bon port COM
+Sous windows, vous aurez besoin du logiciel ESP8266Flasher.EXE (présent dans le zip), branchez le wemos, installez le driver Wemos https://wiki.wemos.cc/_media/file:ch341ser_win.zip, lancez ESP8266Flasher.EXE puis sélectionnez le bon port COM
 
 
 ![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture.PNG "Logo Title Text 1")
