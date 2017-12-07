@@ -27,10 +27,16 @@ Dans l'onglet config, sélectionnez le fichier petitbot_v3.ino.d1_mini.bin et fi
 ![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture2.PNG "Logo Title Text 1")
 
 
-Dans l'onglet AVANCED,
+Dans l'onglet AVANCED, Sélectionnez la vitesse à 921600
+
 
 ![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture3.PNG "Logo Title Text 1")
 
+
+Enfin, revenez sur la première page, puis cliquez sur Flasher
+
+
+![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture.PNG "Logo Title Text 1")
 ### Sous Linux
 Sous linux, installez esptool :
 
