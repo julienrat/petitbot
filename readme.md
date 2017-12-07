@@ -5,29 +5,19 @@
 
 Si vous repoduisez le projet, merci de communiquer avec le hastag #petitbot
 ## Installation
+Pour flasher le PetitBot plusieures solutions s'offrent à vous :
 
-TODO: Describe the installation process
+1. Compiler les sources arduino en ajoutant les bibliothèques nécessaires
+2. flasher le wemos à l'aide d'un utilitaire et des binaires
 
-## Usage
+## Compiler les sources
 
-TODO: Write usage instructions
+## Flasher les binaires
+### Sous Windows
+### Sous Linux
 
-## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
-## History
-
-TODO: Write history
 
 ## Credits
 CCbyNCSA Les petits débrouillards 2016
-TODO: Write credits
 
-## License
-
-TODO: Write license
