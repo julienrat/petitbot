@@ -15,6 +15,7 @@ Pour flasher le PetitBot plusieures solutions s'offrent à vous :
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
+Sous windows, vous aurez besoin du logiciel ESP8266Flasher.EXE, 
 ### Sous Linux
 Sous linux, installez esptool :
 
