@@ -26,6 +26,11 @@ Dans l'onglet config, sélectionnez le fichier petitbot_v3.ino.d1_mini.bin et fi
 
 ![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture2.PNG "Logo Title Text 1")
 
+
+Dans l'onglet AVANCED,
+
+![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture3.PNG "Logo Title Text 1")
+
 ### Sous Linux
 Sous linux, installez esptool :
 
