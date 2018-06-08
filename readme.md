@@ -34,7 +34,13 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 - Ultrasonic : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/Ultrasonic.zip
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/libs.gif "Logo Title Text 1")
 11. Voila votre environnement est prêt, il suffit alors d'importer le code petitbot (avec son repertoire data)
-
+###Flashez le Wemos
+1. Importez le code petitbot (dézippez le avec son repertoire data) dans votre dossier : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3.zip
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/import.gif "Logo Title Text 1")
+2. Redémarrez Arduino, branchez la carte Wemos, Assurez-vous d'avoir sélectionné le bon port et uploadez le programme.
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/upload.gif "Logo Title Text 1")
+3. Enfin uploadez les pages Web dans la mémoire SPIFFS du wemos Outils>ESP8266 Sketch Data Upload
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/spiffs_upload.gif "Logo Title Text 1")
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
