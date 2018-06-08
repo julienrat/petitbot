@@ -18,10 +18,11 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 
 Rendez-vous dans Fichier>Préférences et ajoutez le lien http://arduino.esp8266.com/stable/package_esp8266com_index.json  dans la partie URL de gestionnaire de cartes supplémentaires
 
-Puis dans Outils>type de carte>gestionnaire de carte ajoutez ESP8266
+Puis dans Outils>type de carte>Gestionnaire de carte ajoutez ESP8266
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_wemos.gif "Logo Title Text 1")
 
-3.	
+3.	Sélectionnez la carte Wemos D1 R1 mini dans Outils>Gestionnaire de cartes
+
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
