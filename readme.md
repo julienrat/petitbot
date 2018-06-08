@@ -27,6 +27,11 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_plugin.gif "Logo Title Text 1")
 9. Redémarrez Arduino et une nouvelle option "ESP8266 Sketch Data Upload" apparaitra dans le menu Outils
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/upload_spiffs.gif "Logo Title Text 1")
+10. Installez les bibliothèques nécessaires pour compiler Petitbot
+- ArduinoJson : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/ArduinoJson.zip
+- ESPAsyncTCP : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/ESPAsyncTCP-master.zip
+- ESPAsyncWebServer : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/ESPAsyncWebServer-master.zip
+- Ultrasonic : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/Ultrasonic.zip
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
