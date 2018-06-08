@@ -36,7 +36,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 11. Voila votre environnement est prêt, il suffit alors d'importer le code petitbot (avec son repertoire data)
 
 ### Flashez le Wemos
-1. Importez le code petitbot (dézippez le avec son repertoire data) dans votre dossier de sketchs <home dir>/Arduino: https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3.zip
+1. Importez le code petitbot (dézippez le avec son repertoire data) dans votre dossier de sketchs <home_dir>/Arduino: https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3.zip
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/import.gif "Logo Title Text 1")
 2. Redémarrez Arduino, branchez la carte Wemos, Assurez-vous d'avoir sélectionné le bon port et uploadez le programme.
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/upload.gif "Logo Title Text 1")
