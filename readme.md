@@ -15,6 +15,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 ### Préparez votre environnement de développement
 1. Installez la dernière version d'arduino disponible ici : https://www.arduino.cc/en/Main/Software
 2. Ajoutez la carte Wemos à votre bibliothèque de cartes :
+
 Rendez-vous dans Fichier>Préférences et ajoutez le lien http://arduino.esp8266.com/stable/package_esp8266com_index.json  dans la partie URL de gestionnaire de cartes supplémentaires
 
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_wemos.gif "Logo Title Text 1")
