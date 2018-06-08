@@ -25,6 +25,8 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 7. Installez l'utilitaire de flashage de la mémoire SPIFFS, Téléchargez le fichier https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/esp8266fs.jar
 8. Copiez-collez je fichier esp8266fs.jar dans le répertoire <home_dir>/Arduino/tools/ESP8266FS/tool/esp8266fs.jar
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_plugin.gif "Logo Title Text 1")
+9. Redémarrez Arduino et une nouvelle option "ESP8266 Sketch Data Upload" apparaitra dans le menu Outils
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/upload_spiffs.gif "Logo Title Text 1")
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
