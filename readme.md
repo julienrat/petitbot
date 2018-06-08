@@ -20,6 +20,10 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_wemos.gif "Logo Title Text 1")
 5.	Sélectionnez la carte Wemos D1 R1 mini dans Outils>Type de carte>Gestionnaire de cartes
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/choix_carte.gif "Logo Title Text 1")
+6. Sélectionnez le bon port USB
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/choix_port.gif "Logo Title Text 1")
+7. Installez l'utilitaire de flashage de la mémoire SPIFFS
+
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
