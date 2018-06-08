@@ -32,7 +32,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 - ESPAsyncTCP : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/ESPAsyncTCP-master.zip
 - ESPAsyncWebServer : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/ESPAsyncWebServer-master.zip
 - Ultrasonic : https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/Ultrasonic.zip
-
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/libs.gif "Logo Title Text 1")
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
