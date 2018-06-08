@@ -44,7 +44,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/spiffs_upload.gif "Logo Title Text 1")
 4. Et Voilà !
 ## Flasher les binaires
-Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
+Téléchargez et décompresser le fichier zip dans votre répertoire ome_dir>/Arduino https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
 Sous windows, vous aurez besoin du logiciel ESP8266Flasher.EXE (présent dans le zip), branchez le wemos, installez le driver Wemos https://wiki.wemos.cc/_media/file:ch341ser_win.zip, lancez ESP8266Flasher.EXE puis sélectionnez le bon port COM
 
