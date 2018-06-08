@@ -19,7 +19,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 4. Puis dans Outils>Type de carte>Gestionnaire de carte ajoutez ESP8266
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_wemos.gif "Logo Title Text 1")
 5.	Sélectionnez la carte Wemos D1 R1 mini dans Outils>Type de carte>Gestionnaire de cartes
-
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/choix_carte.gif "Logo Title Text 1")
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
