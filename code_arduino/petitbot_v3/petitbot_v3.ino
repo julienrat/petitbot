@@ -1,3 +1,12 @@
+//////////////
+// Petit Bot //
+///////////////
+// Un programme pedagogique des petits debrouillards ?=+ pour gerer le robot "Petit Bot" 
+// Voir sur http://wikidebrouillard.org/index.php?title=Petit_Bot_un_robot_controlable_en_Wifi
+// Ce programme est inspire de : http://www.esp8266.com/viewtopic.php?f=29&t=6419#sthash.gd1tJhwU.dpuf
+// Sous licence CC-By-Sa
+// Par des gens bien
+
 #include <ArduinoJson.h>
 
 #include <ESP8266WiFi.h>
@@ -24,7 +33,7 @@ Ticker stopper;
 // SKETCH BEGIN
 AsyncWebServer server(80);
 AsyncWebSocket ws("/ws");
-const char* hostAP = "PetitBLOCK"; // nom du point d'acces petitBot
+const char* hostAP = "PetitBot"; // nom du point d'acces petitBot
 static int restartNow = false;
 const char* version = "V3";
 //Bibliotheque Servo
@@ -76,9 +85,9 @@ void setup() {
   servo1.attach(pin_servo1);
   servo2.attach(pin_servo2);
   servo3.attach(pin_servo3);
-  
+
   /////redirection portail captif
- server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->redirect("/index.html");
     delay(100);
   });
@@ -107,7 +116,7 @@ void setup() {
 
   server.on("/led1_on", HTTP_GET, [](AsyncWebServerRequest * request) {
 
-    digitalWrite(pin_led1, HIGH);
+    digitalWrite(pin_led1, LOW); //erreur initial sur le code, il était écrit HIGH
     request->send(200, "text/json", "Led1 allumée");
   });
 
@@ -118,7 +127,7 @@ void setup() {
 
   server.on("/led2_on", HTTP_GET, [](AsyncWebServerRequest * request) {
 
-    digitalWrite(pin_led2, HIGH);
+    digitalWrite(pin_led2, LOW);
     request->send(200, "text/json", "Led1 allumée");
   });
 
@@ -131,7 +140,7 @@ void setup() {
     if (request->params() > 0 and request->args() > 0) {
       if (request->hasParam("angle")) {
         String angle = request->arg("angle");
-        Serial.print(angle.toInt());
+        servo1.write(angle.toInt()); //erreur de code ! initialement il est écrit "Serial.print" cela a été remplacé par "servo1.write"
         request->send(200, "text/json", "Servo1 : " + angle );
       } else {
         request->send(200, "text/json", "Mauvaise commande" );
@@ -266,8 +275,8 @@ void setup() {
         request->send(200, "text/json", "Mauvaise commande" );
       }
     } else {
-      servoD.write(180);
-      servoG.write(180);
+      servoD.write(0);
+      servoG.write(0);
       request->send(200, "text/json", "Gauche");
     }
   });
@@ -276,8 +285,8 @@ void setup() {
     servoG.attach(pin_servoG);
     servoD.attach(pin_servoD);
 
-    servoD.write(180);
-    servoG.write(180);
+    servoD.write(0);
+    servoG.write(0);
     stopper.attach(0.2, arret);
     request->send(200, "text/json", "Gauche");
 
@@ -288,8 +297,8 @@ void setup() {
     servoG.attach(pin_servoG);
     servoD.attach(pin_servoD);
 
-    servoD.write(0);
-    servoG.write(0);
+    servoD.write(180);
+    servoG.write(180);
 
     stopper.attach(0.2, arret);
     request->send(200, "text/json", "Droite");
@@ -310,8 +319,8 @@ void setup() {
         request->send(200, "text/json", "Mauvaise commande" );
       }
     } else {
-      servoD.write(0);
-      servoG.write(0);
+      servoD.write(180);
+      servoG.write(180);
       request->send(200, "text/json", "Droite");
     }
   });
@@ -349,6 +358,8 @@ void setup() {
     servoD.attach(pin_servoD);
     servoD.write(90);
     servoG.write(90);
+    servoG.detach(); // ces deux commandes ont été rajouté car parfois les roues du bot continuaient à trouver même en ayant envoyé le signal STOP
+    servoD.detach(); // ces deux commandes ont été rajouté car parfois les roues du bot continuaient à trouver même en ayant envoyé le signal STOP
     Serial.println("STOP");
     request->send(200, "text/json", "STOP");
   });
@@ -490,19 +501,19 @@ static void handle_update_progress_cb(AsyncWebServerRequest *request, String fil
   }
 }
 void set_wifi() {
-WiFi.hostname(name.c_str());
+  WiFi.hostname(name.c_str());
   if (access_point.equals("access_point")) {
     Serial.println(" ");
     Serial.println("PetitBot : " + String(version));
     Serial.println("Configuration Point d'acces");
     Serial.print("nom du point d'acces : ");
-    Serial.println(name);    
+    Serial.println(name);
     WiFi.mode(WIFI_AP);
-    
+
     WiFi.softAP(name.c_str(), "", canal.toInt());
   } else {
     Serial.print("Connexion au reseau : ");
-    Serial.println(ssid);   
+    Serial.println(ssid);
     WiFi.mode(WIFI_STA);
 
     int timeout = 0;
@@ -555,6 +566,5 @@ void loop() {
     ESP.reset();
   }
 }
-
 
 
