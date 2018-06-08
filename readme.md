@@ -41,6 +41,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/upload.gif "Logo Title Text 1")
 3. Enfin uploadez les pages Web dans la mémoire SPIFFS du wemos Outils>ESP8266 Sketch Data Upload
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/spiffs_upload.gif "Logo Title Text 1")
+4. Et Voilà !
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
