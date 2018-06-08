@@ -43,7 +43,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 3. Enfin uploadez les pages Web dans la mémoire SPIFFS du wemos Outils>ESP8266 Sketch Data Upload
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/spiffs_upload.gif "Logo Title Text 1")
 4. Et Voilà !
-## Flasher les binaires
+## Flashez les binaires 
 Téléchargez et décompresser le fichier zip dans votre répertoire ome_dir>/Arduino https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
 ### Sous Windows
 Sous windows, vous aurez besoin du logiciel ESP8266Flasher.EXE (présent dans le zip), branchez le wemos, installez le driver Wemos https://wiki.wemos.cc/_media/file:ch341ser_win.zip, lancez ESP8266Flasher.EXE puis sélectionnez le bon port COM
