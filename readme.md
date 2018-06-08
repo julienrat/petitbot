@@ -16,6 +16,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 1. Installez la dernière version d'arduino disponible ici : https://www.arduino.cc/en/Main/Software
 2. Ajoutez la carte Wemos à votre bibliothèque de cartes :
 
+![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_wemos.gif "Logo Title Text 1")
  
 ## Flasher les binaires
 Téléchargez et décompresser le fichier zip https://github.com/julienrat/petitbot/raw/master/flasher_petitbot.zip
