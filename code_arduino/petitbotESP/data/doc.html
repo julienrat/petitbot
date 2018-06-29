@@ -1,0 +1,163 @@
+<!-- Petitbot, sous licence libre CCbyNCSA Les Petits Débrouillards 2016-2017
+
+Le Petitbot a été conçu et imaginé par Julien Rat et Guilème, retravaillé par Antony Auffret, le CSS de la télécommande réalisé par Johann David. Adaptation du logiciel BlockCode de Zou-xuan https://github.com/zou-xuan/BlockCode par Julien Rat.
+
+La version 3 du code est disponible sur https://github.com/julienrat/petitbot
+
+Pour toute utilisation en public, merci de tweeter, facebooker ou instagrammer avec le hashtag #petitbot et de citer vos sources !
+ -->
+ 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <title>Documentation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">PetitBot</a>
+    </div>
+    <ul class="nav navbar-nav">
+
+      <li><a href="block.html">Programmer</a></li>
+      <li><a href="telecommande.html">Télécommande</a></li>      
+      <li class="active"><a href="doc.html">Documentation</a></li>
+      <li><a href="config.html">Configurer</a></li>
+      <li><a href="upload.html">Mise à jour</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header">
+						<h1>
+							Fabriquer le Petitbot
+						</h1>
+					</div>
+					<h2>
+						Le montage de base
+					</h2>
+					<p>	Liste du matériel : </p>
+					<ul>
+						<li>
+						1 wemos D1 mini.
+						</li>
+						<li>
+							2 servomoteurs à rotation continue.
+						</li>
+						<li>
+							1 batterie 5V.
+						</li>
+						<li>
+							1 interrupteur.
+						</li>
+						<li>
+							8 fils dupont : 1 jaune, 1 vert, 3 rouges, 3 noirs.
+						</li>
+					</ul>
+			
+					<a href="images/montage.jpg" target="_blank" class="pull-left"><img alt="Bootstrap Media Preview" src="images/montage.jpg" class="media-object" width="500" height="200" /></a>
+				
+				</div>
+			</div>
+			<div class="row">
+				
+				<div class="col-md-12">
+					<br>
+					<p>
+						Le schéma paraît touffu car il y a 8 fils qui se recouvrent. Aussi pour comprendre le schéma, il faut mettre de l'ordre (on place l'interrupteur sur le + de la batterie) :
+					</p>
+					<ul>
+						<li>
+							Du + (interrupteur) : 3 fils rouges vers chaque composant pour les alimenter.
+						</li>
+						<li>
+							Du - : 3 fils noirs vers chaque composants.
+						</li>
+						<li>
+							De la broche D1 du Wemos au servo gauche : un fil jaune.
+						</li>
+						<li>
+							De la broche D2 du Wemos au servo droit : un fil vert
+						</li>
+					</ul>
+					
+					<h1>
+						Comment faire les roues ?
+					</h1>
+					<ol>
+						<li>
+							Récupérer des choses circulaires :
+							<ul>
+								<li>
+									bouchons de bouteilles variées
+								</li>
+								<li>
+									couvercles de pots divers
+								</li>
+								<li>
+									...
+								</li>
+							</ul>
+						</li>
+						<li>
+							Découper des matériaux
+							<ul>
+								<li>
+									Gros carton ondulé
+								</li>
+								<li>
+									Autres...
+								</li>
+							</ul>
+						</li>
+						<li>
+							Les coller sur les servomoteurs :
+						</li>
+						<p>Les servomoteurs sont livrés avec des accessoires qui se fixent sur l'axe avec la plus petite des 3 vis fournies. Prenez soin de bien visser un de ces accessoires qui couvre de préférence un diamètre (en croix, en disque ou en transversal simplement). Cela ajoute à la rigidité de votre roue.</p>
+					</ol>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+				</div>
+				<div class="col-md-3">
+					<a href="images/servo.jpg" target="_blank" class="pull-left"><img alt="Bootstrap Media Preview" src="images/servo.jpg" class="media-object" width="100" height="100" /></a>
+				</div>
+				<div class="col-md-3">
+					<a href="images/servo_colle.jpg" target="_blank" class="pull-left"><img alt="Bootstrap Media Preview" src="images/servo_colle.jpg" class="media-object" width="100" height="100" /></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<br>
+					<h1>
+						Comment faire le châssis ?
+					</h1>
+					<p>
+						Inspirez-vous des photos et inventez !
+					</p>
+					<h1>
+						Pour bien réussir son petit bot il faut être méthodique !
+					</h1>
+					<p>
+						Celui-ci est à base de carton, pistolet à colle, un peu d'impression 3D pour la roue bille et de soudure pour l'interrupteur !
+					</p>
+					<a href="images/bot_carton.jpg" target="_blank" class="pull-left"><img alt="Bootstrap Media Preview" src="images/bot_carton.jpg" class="media-object" width="500" height="600" align="middle" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

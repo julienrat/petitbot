@@ -1,0 +1,134 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-family: Verdana, sans-serif; 
+}
+
+.menu, .script, .block {
+
+    border: 3px inset #021429;
+    border-radius: 7px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: Verdana, sans-serif; 
+}
+
+h1 {
+    margin: 0em;
+    
+    font-family: Verdana, sans-serif; 
+}
+
+.menu-column {
+    
+    width: 24%;
+    height: 85%;
+    float: left;
+    margin: 10px 10px;
+}
+
+.menu {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    overflow-y: auto;
+}
+.text_input{
+	color: rgb(0, 0, 0);    
+}
+.menu.over {
+    background-color: rgb(255, 255, 255);
+}
+
+.script-column {
+    width: 64%;
+    height: 80%;
+    float: left;
+    margin: 0px 30px;
+}
+
+.script {
+color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    height: 94%;
+    overflow-y: auto;
+}
+
+.script.over {
+    background-color: rgb(255, 255, 255);
+}
+
+.canvas-column {
+    width: 0%;
+    height: 85%;
+    float: right;
+    margin-right: 10px;
+}
+
+.canvas-placeholder {
+    width: 0%;
+    height: 85%;
+}
+
+.canvas {
+    background-color: white;
+    position: absolute;
+}
+
+.block {
+    padding: 5px;
+    margin: 10px;
+    cursor: move;
+}
+
+.block.running {
+    outline: 2px solid red;
+}
+
+.block.next {
+    outline: 2px solid green;
+}
+
+.block.dragging {
+    opacity: 0.4;
+}
+
+.menu .block {
+    background-color: rgb(0, 0, 0);
+    font-family: Verdana, sans-serif; 
+}
+
+.script .block {
+    margin: 5px;
+    background-color: rgb(0, 0, 0);
+}
+
+.block input {
+    margin-left: 1em;
+    width: 5em;
+    margin-bottom: 5px;
+}
+
+.container2 {
+
+    margin: 0 -6px 0 20px;
+    padding-bottom: 20px;
+    border: 1px inset #021429;
+    border-radius: 7px;
+    border-right: 0;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px 0 0 7px;
+}
+
+.menu .container2 {   
+    background-color: rgb(255, 255, 255);
+}
+
+.over .container2 {
+
+    background-color: rgb(255, 255, 255);
+}
