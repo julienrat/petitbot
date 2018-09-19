@@ -75,7 +75,7 @@ Sous linux, installez python serial :
 
 Placez vous dans le répertoire décompressé, puis lancez la commande suivante :
 
-```./esptool.py --port /dev/ttyUSB0 write_flash 0x100000 petitbot_v3.spiffs.bin 0x00000 petitbot_v3.ino.d1_mini.bin```
+```sudo python esptool.py --port /dev/ttyUSB0 write_flash 0x100000 petitbot_v3.spiffs.bin 0x00000 petitbot_v3.ino.d1_mini.bin```
 
 
 ## Usage
