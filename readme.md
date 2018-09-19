@@ -69,9 +69,9 @@ Enfin, revenez sur la première page, puis cliquez sur Flasher
 
 ![alt text](https://github.com/julienrat/petitbot/raw/master/images/Capture.PNG "Logo Title Text 1")
 ### Sous Linux
-Sous linux, installez esptool :
+Sous linux, installez python serial :
 
-```pip install esptool```
+```sudo apt-get install python-serial```
 
 Placez vous dans le répertoire décompressé, puis lancez la commande suivante :
 
