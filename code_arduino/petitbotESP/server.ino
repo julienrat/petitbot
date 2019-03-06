@@ -62,147 +62,109 @@ void server_setup () {
   });
 
   server.on("/servo1", HTTP_GET, [](AsyncWebServerRequest * request) {
-    handleSetAngleRequest (servo1, "servo1");
+    server_setAngle (request, servo1, "servo1");
   });
 
   server.on("/servo2", HTTP_GET, [](AsyncWebServerRequest * request) {
-    handleSetAngleRequest (servo2, "servo2");
+    server_setAngle (request, servo2, "servo2");
   });
 
   server.on("/servo3", HTTP_GET, [](AsyncWebServerRequest * request) {
-    handleSetAngleRequest (servo3, "servo3");
+    server_setAngle (request, servo3, "servo3");
   });
 
   server.on("/servoG", HTTP_GET, [](AsyncWebServerRequest * request) {
-    handleSetAngleRequest (servoG, "servoG");
+    server_setAngle (request, servoG, "servoG");
   });
 
   server.on("/servoD", HTTP_GET, [](AsyncWebServerRequest * request) {
-    handleSetAngleRequest (servoD, "servoD");
+    server_setAngle (request, servoD, "servoD");
   });
 
   server.on("/avance", HTTP_GET, [](AsyncWebServerRequest * request) {
     if (request->params() > 0 and request->args() > 0) {
       if (request->hasParam("vitesse")) {
         String vitesse = request->arg("vitesse");
-        if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
-        servoG.write(90 + vitesse.toInt());
-        servoD.write(90 - vitesse.toInt());
+        if (vitesse == "" || vitesse.toInt() > 90) {
+          vitesse = "90";
+        }
+        servo_avance(vitesse);
         request->send(200, "text/json", "Avance : " + vitesse );
       } else {
-        request->send(200, "text/json", "Mauvaise commande" );
+        request->send(400, "text/json", "Mauvaise commande" );
       }
     } else {
-      servoG.write(180);
-      servoD.write(0);
+      servo_avance("90");
       request->send(200, "text/json", "Avance");
     }
   });
   server.on("/step_avance", HTTP_GET, [](AsyncWebServerRequest * request) {
-    servoG.attach(pin_servoG);
-    servoD.attach(pin_servoD);
-
-    servoG.write(180);
-    servoD.write(0);
-    stopper.attach(0.4, arret);
-
+    servo_step_avance();
     request->send(200, "text/json", "step avance");
-
   });
 
   server.on("/step_recule", HTTP_GET, [](AsyncWebServerRequest * request) {
-    servoG.attach(pin_servoG);
-    servoD.attach(pin_servoD);
-
-    servoG.write(0);
-    servoD.write(180);
-    stopper.attach(0.4, arret);
-
+    servo_step_recule();
     request->send(200, "text/json", "step recule");
-
   });
+
   server.on("/recule", HTTP_GET, [](AsyncWebServerRequest * request) {
-    servoG.attach(pin_servoG);
-    servoD.attach(pin_servoD);
     if (request->params() > 0 and request->args() > 0) {
       if (request->hasParam("vitesse")) {
         String vitesse = request->arg("vitesse");
         if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
-        servoD.write(90 + vitesse.toInt());
-        servoG.write(90 - vitesse.toInt());
+        servo_recule(vitesse);
         request->send(200, "text/json", "Recule : " + vitesse );
       } else {
         request->send(200, "text/json", "Mauvaise commande" );
       }
     } else {
-      servoD.write(180);
-      servoG.write(0);
+      servo_recule("90");
       request->send(200, "text/json", "Recule");
     }
   });
 
   server.on("/gauche", HTTP_GET, [](AsyncWebServerRequest * request) {
-    servoG.attach(pin_servoG);
-    servoD.attach(pin_servoD);
     if (request->params() > 0 and request->args() > 0) {
       if (request->hasParam("vitesse")) {
         String vitesse = request->arg("vitesse");
         if (vitesse == "" || vitesse.toInt() > 90) {
           vitesse = "90";
         }
-        servoD.write(90 - vitesse.toInt());
-        servoG.write(90 - vitesse.toInt());
+        servo_gauche(vitesse);
         request->send(200, "text/json", "Gauche : " + vitesse );
       } else {
         request->send(400, "text/json", "Mauvaise commande" );
       }
     } else {
-      servoD.write(0);
-      servoG.write(0);
+      servo_gauche("90");
       request->send(200, "text/json", "Gauche");
     }
   });
 
   server.on("/step_gauche", HTTP_GET, [](AsyncWebServerRequest * request) {
-    servoG.attach(pin_servoG);
-    servoD.attach(pin_servoD);
-
-    servoD.write(0);
-    servoG.write(0);
-    stopper.attach(0.2, arret);
+    servo_step_gauche();
     request->send(200, "text/json", "Gauche");
-
   });
 
 
   server.on("/step_droite", HTTP_GET, [](AsyncWebServerRequest * request) {
-    servoG.attach(pin_servoG);
-    servoD.attach(pin_servoD);
-
-    servoD.write(180);
-    servoG.write(180);
-
-    stopper.attach(0.2, arret);
+    servo_step_droite();
     request->send(200, "text/json", "Droite");
-
   });
 
   server.on("/droite", HTTP_GET, [](AsyncWebServerRequest * request) {
-    servoG.attach(pin_servoG);
-    servoD.attach(pin_servoD);
     if (request->params() > 0 and request->args() > 0) {
       if (request->hasParam("vitesse")) {
         String vitesse = request->arg("vitesse");
         if (vitesse == "" || vitesse.toInt() > 90) vitesse = "90";
-        servoD.write(90 - vitesse.toInt());
-        servoG.write(90 - vitesse.toInt());
+        servo_droite(vitesse);
         request->send(200, "text/json", "Droite : " + vitesse );
       } else {
         request->send(400, "text/json", "Mauvaise commande" );
       }
     } else {
-      servoD.write(180);
-      servoG.write(180);
+      servo_droite("90");
       request->send(200, "text/json", "Droite");
     }
   });
@@ -247,13 +209,12 @@ void server_setup () {
   });
 
   server.serveStatic("/", SPIFFS, "/").setDefaultFile("index.html");
-
 }
 
-void handleSetAngleRequest (Servo servo, String servoName) {
+void server_setAngle(AsyncWebServerRequest * request, Servo servo, String servoName) {
   if (request->params() > 0 and request->args() > 0 and request->hasParam("angle")) {
     String angle = request->arg("angle");
-    servo.write(angle.toInt());
+    servo_setAngle(servo, angle);
     request->send(200, "text/json", servoName + " : " + angle );
   } else {
     request->send(400, "text/json", "Mauvaise commande" );
