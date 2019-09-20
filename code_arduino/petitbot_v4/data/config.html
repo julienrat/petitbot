@@ -1,0 +1,284 @@
+<!-- Petitbot, sous licence libre CCbyNCSA Les Petits Débrouillards 2016-2017
+
+Le Petitbot a été conçu et imaginé par Julien Rat et Guilème, retravaillé par Antony Auffret, le CSS de la télécommande réalisé par Johann David. Adaptation du logiciel BlockCode de Zou-xuan https://github.com/zou-xuan/BlockCode par Julien Rat.
+
+La version 3 du code est disponible sur https://github.com/julienrat/petitbot
+
+Pour toute utilisation en public, merci de tweeter, facebooker ou instagrammer avec le hashtag #petitbot et de citer vos sources !
+ -->
+ 
+<!DOCTYPE html>
+<html lang="fr">
+	
+<script>
+	var xh_serveur = new XMLHttpRequest();
+	var ssid;
+	var i;
+	var x;
+	var mode="access_point";
+
+function affiche_liens(name) {	
+    var myBodyId = document.getElementById("liste");   
+    var newBaitTag = document.createElement('a');
+    var br = document.createElement("br");
+    var newBaitText = document.createTextNode(name);
+    newBaitTag.setAttribute('href', 'javascript:send_ssid("'+name+'")');
+    newBaitTag.appendChild(newBaitText);
+    myBodyId.appendChild(newBaitTag);
+    myBodyId.appendChild(br);       
+}
+
+function send_ssid(nom){
+	console.log(nom);
+	document.getElementById("reseau").value = nom;
+}	
+function scan(){
+			
+		xh_serveur.open("GET", "/scan", true);
+		xh_serveur.onreadystatechange = function(){
+				if (xh_serveur.readyState == 4){
+					if(xh_serveur.status == 200) {
+						var res = JSON.parse(xh_serveur.responseText);
+						console.log(res.length);
+						x="";
+						document.getElementById("liste").innerHTML = "";
+						for (i = 0 ; i < res.length ; i++){
+						  x=   res[i].ssid ;
+						  affiche_liens(x); 
+						}						
+					}
+				}
+			}
+		xh_serveur.send(null);
+			
+}
+
+function access_point(){
+document.getElementById('networked_box').style.display="none";
+document.getElementById('acces_point_box').style.display="block";
+document.getElementById('scan_button').style.display="none";
+document.getElementById('mode').firstChild.data ="PetitBot en point d'accès";
+mode="access_point";
+}
+
+function networked(){
+
+document.getElementById('acces_point_box').style.display="none";
+document.getElementById('networked_box').style.display="block";
+document.getElementById('scan_button').style.display="block";
+document.getElementById('mode').firstChild.data ="PetitBot dans un réseau existant";
+mode="networked";
+scan();
+
+}
+function sleep(delay) {
+			var start = new Date().getTime();
+			while (new Date().getTime() < start + delay);
+}
+
+function write_config(){
+	var invert_motors = document.getElementById('invert_motors').checked;
+	var ssid =  document.getElementById('reseau').value;
+	var mdp = document.getElementById('mdp').value;
+	var canal = document.getElementById('canal').value;
+	var name = document.getElementById('name').value;
+	var ip = document.getElementById('ip').value;
+	var post_config='/write?name='+name+'&invert_motors='+invert_motors+'&mode='+mode+'&ssid='+ssid+'&mdp='+mdp+'&canal='+canal+'&ip='+ip;
+	xh_serveur.open("GET", post_config, true);
+	xh_serveur.onreadystatechange = function(){
+
+		};
+	xh_serveur.send(null);
+}
+
+function load_config(){
+	xh_serveur.open("GET", "/config.txt", true);
+	xh_serveur.onreadystatechange = function(){
+		if (xh_serveur.readyState == 4){
+					if(xh_serveur.status == 200) {
+						var res = JSON.parse(xh_serveur.responseText);
+						console.log(res);
+						document.getElementById('canal').value = res.canal
+						document.getElementById('name').value = res.name;
+						document.getElementById('ip').value = res.ip;
+						document.getElementById('reseau').value = res.ssid;
+						document.getElementById('mdp').value = res.mdp;						
+						if( res.invert_motors == "true" ){
+							document.getElementById('invert_motors').checked = true;
+						}else{
+							document.getElementById('invert_motors').checked = false;
+						}
+						if( res.mode == "access_point"){
+							access_point();
+						}else{
+							networked();
+						}
+						
+					}
+		}
+	};
+	xh_serveur.send(null);
+}
+
+
+</script>
+<head>
+  <title>Configuration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body onload="javascript:load_config()">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">PetitBot</a>
+    </div>
+    <ul class="nav navbar-nav">
+      
+      <li><a href="block.html">Programmer</a></li>
+      <li><a href="telecommande.html">Télécommande</a></li>      
+      <li><a href="doc.html">Documentation</a></li>
+      <li class="active"><a href="config.html">Configurer</a></li>
+      <li><a href="upload.html">Mise à jour</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="col-md-6">
+	<h3>
+	Général
+	</h3>
+	<hr />
+	<div class="row">
+				<div class="col-md-6">
+					<h5>Nom du petitbot</h5>
+					<input id="name" type="text" name="name" value="nom">
+					<a href="#" class= "glyphicon glyphicon-info-sign" title="Ici le nom de votre PetitBot, ce nom servira aussi à créer le réseau Wifi en mode Point d'accès" data-toggle="popover" data-trigger="hover" style="text-decoration:none" ></a>
+				</div>
+				<div class="col-md-9">
+				</div>
+			</div>
+	<div class="checkbox">					 
+		<label>
+			<input id="invert_motors" type="checkbox" /> Inverser les moteurs
+			
+			<a href="#" class= "glyphicon glyphicon-info-sign" title="Si votre PetitBot recule au lieu d'avancer, cliquez sur inverser les moteurs" data-toggle="popover" data-trigger="hover" style="text-decoration:none" ></a>
+		</label>
+	</div>
+	
+	<div class="form-group">
+		
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				Configuration du réseau
+			</h3>
+			<hr />
+		</div>
+
+	
+			
+	<div class="col-md-12">
+		
+			<div class="btn-group">				 
+				<button id="mode" class="btn btn-default">
+					PetitBot en point d'accès
+				</button> 
+				<button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+					<span class="caret"></span>
+					
+				</button>
+				
+				<ul class="dropdown-menu">
+					<li>
+						<a href="javascript:access_point()">PetitBot en point d'accès</a>
+						
+					</li>
+					<li>
+						<a href="javascript:networked()">PetitBot dans un réseau existant</a>
+					</li>
+					
+				</ul>
+	
+				<button id="scan_button" type="button" class="btn btn-success" onclick= "scan()" style="display:none">Scanner les reseaux</button>
+				
+			</div>
+			<a href="#" class= "glyphicon glyphicon-info-sign" title="En point d'accès, le PetitBot va créer un réseau wifi portant le nom du PetitBot, sinon, il va rejoindre votre réseau wifi existant" data-toggle="popover" data-trigger="hover" style="text-decoration:none" ></a>
+		</div>
+		
+			
+	<div id='acces_point_box'>
+		<div class="col-md-9">
+		<div class="row">
+				 <div class="col-md-9">
+					 <h5>Canal du réseau</h5>
+					<input id="canal" type="text" name="canal" value="8">
+					<a href="#" class= "glyphicon glyphicon-info-sign" title="Changez le canal wifi si vous utilisez plusieurs PetitsBot, ceci pour éviter les perturbations wifi" data-toggle="popover" data-trigger="hover" style="text-decoration:none" ></a>
+				</div>
+			</div>
+				
+		<div class="row">
+				<div class="col-md-6">
+					<h5>Adresse IP</h5>
+					<input id="ip" type="text" name="ip" value="ip">
+					<a href="#" class= "glyphicon glyphicon-info-sign" title="Fixez une adresse IP à votre PetitBot, lassez vide pour utiliser le DHCP" data-toggle="popover" data-trigger="hover" style="text-decoration:none" ></a>
+				</div>				
+		</div>
+		<br>
+		<div class="row">
+				<div class="col-md-6">
+					<button id="envoyer" type="button" class="btn btn-danger" onclick= "write_config()" >Enregistrer</button>
+				</div>				
+			</div>
+	
+	</div>
+		</div>	
+	<div id='networked_box' style="display:none">
+		<div class="col-md-12">
+					
+	
+			<div class="row">
+				
+				<div class="col-md-9">
+					<h5 id="liste"></h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>SSID</h5>
+					<input id="reseau" type="text" name="SSID" value="ssid">
+					<a href="#" class= "glyphicon glyphicon-info-sign" title="Ici le nom de votre réseau wifi" data-toggle="popover" data-trigger="hover" style="text-decoration:none"></a>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Mot de passe</h5>
+					<input id="mdp" type="text" name="MDP" value="mot de passe">
+					<a href="#" class= "glyphicon glyphicon-info-sign" title="Ici le mot de passe de votre réseau wifi" data-toggle="popover" data-trigger="hover" style="text-decoration:none" ></a>
+				</div>				
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Adresse IP</h5>
+					<input id="ip" type="text" name="ip" value="ip">
+					<a href="#" class= "glyphicon glyphicon-info-sign" title="Fixez une adresse IP à votre PetitBot, lassez vide pour utiliser le DHCP" data-toggle="popover" data-trigger="hover" style="text-decoration:none" ></a>
+				</div>				
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-6">
+					<button id="envoyer" type="button" class="btn btn-danger" onclick= "write_config()" >Enregistrer</button>
+				</div>				
+			</div>
+
+	</div>
+
+
+</div>
+</body>
+</html>

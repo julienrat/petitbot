@@ -1,0 +1,247 @@
+<!-- Petitbot, sous licence libre CCbyNCSA Les Petits Débrouillards 2016-2017
+
+Le Petitbot a été conçu et imaginé par Julien Rat et Guilème, retravaillé par Antony Auffret, le CSS de la télécommande réalisé par Johann David. Adaptation du logiciel BlockCode de Zou-xuan https://github.com/zou-xuan/BlockCode par Julien Rat.
+
+La version 3 du code est disponible sur https://github.com/julienrat/petitbot
+
+Pour toute utilisation en public, merci de tweeter, facebooker ou instagrammer avec le hashtag #petitbot et de citer vos sources !
+ --> 
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Télécommande</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="icon" type="image/png" href="images/favicon.png" />
+
+
+	<style>
+		.all {
+			display : flex;
+			flex-direction : column;
+			padding : 0;
+			height : 100%;
+		}
+
+		.navbar {
+			margin-bottom : 0;
+			flex-grow : 0;
+		}
+
+		.remote-container {
+			padding : 1vw;
+			display : flex;
+			flex-grow : 1;
+			/*background-color : orange;
+			border : 2px solid green;*/
+			width : 100%;
+		}
+
+		.remote-button {
+			width : calc(3em + 6vw);
+		}
+
+		.remote-up {
+			position : absolute;
+			left : calc(50% - 3vw - 1.5em);
+		}
+		.remote-down {
+			position : absolute;
+			bottom : 1vw;
+			left : calc(50% - 3vw - 1.5em);
+			transform:          rotate(180deg);
+				-ms-transform:      rotate(180deg);
+				-moz-transform:     rotate(180deg);
+				-webkit-transform:  rotate(180deg);
+				-o-transform:       rotate(180deg);
+		}
+		.leftright {
+			display : flex;
+			align-items : center;
+			width : 100%;
+		}
+		.leftdiv {
+			flex-grow : 1;
+		}
+		.rightdiv {
+			flex-grow : 1;
+			text-align : right;
+		}
+		.remote-left {
+			transform:          rotate(270deg);
+				-ms-transform:      rotate(270deg);
+				-moz-transform:     rotate(270deg);
+				-webkit-transform:  rotate(270deg);
+				-o-transform:       rotate(270deg);
+		}
+		.remote-right {
+			transform:          rotate(90deg);
+				-ms-transform:      rotate(90deg);
+				-moz-transform:     rotate(90deg);
+				-webkit-transform:  rotate(90deg);
+				-o-transform:       rotate(90deg);
+		}
+
+		html, body {
+			height: 100% !important;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container-fluid all">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">PetitBot</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="block.html">Programmer</a></li>
+					<li  class="active"><a href="telecommande.html">Télécommande</a></li>      
+					<li><a href="doc.html">Documentation</a></li>
+					<li><a href="config.html">Configurer</a></li>
+					<li><a href="upload.html">Mise à jour</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="remote-container">
+			<img src="images/arrow.svg" id="UP" class="remote-button remote-up" />
+			<img src="images/arrow.svg" id="DOWN" class="remote-button remote-down" />
+			<div class="leftright">
+				<div class="leftdiv">
+					<img src="images/arrow.svg" id ="RIGHT" class="remote-button remote-left" />
+				</div>
+				<div class="rightdiv">
+					<img src="images/arrow.svg" id="LEFT" class="remote-button remote-right" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.js"></script>
+	<script>
+document.getElementById("UP").addEventListener("touchstart",avance);
+document.getElementById("UP").addEventListener("touchend", stop);
+
+document.getElementById("DOWN").addEventListener("touchstart",recule);
+document.getElementById("DOWN").addEventListener("touchend", stop);
+
+document.getElementById("RIGHT").addEventListener("touchstart",droite);
+document.getElementById("RIGHT").addEventListener("touchend", stop);
+
+document.getElementById("LEFT").addEventListener("touchstart",gauche);
+document.getElementById("LEFT").addEventListener("touchend", stop);
+
+ jQuery(document).ready(function(){
+           $(document).keydown(function(touche){ // on écoute l'évènement keyup()
+
+			var appui = touche.which || touche.keyCode; // le code est compatible tous navigateurs grâce à ces deux propriétés
+
+			if(appui == 38){ 				
+					avance();
+			}
+			if(appui == 40){ 				
+					recule();
+			}
+			if(appui == 37){ 				
+					gauche();
+			}
+			if(appui == 39){ 				
+					droite();
+			}
+			if(appui == 32){ 					
+					stop();
+			}
+		});
+		
+		$(document).keyup(function(touche){
+			stop();
+		});
+		
+		
+		$('#UP').on({
+			mousedown : function(){
+			avance();
+			},
+			mouseup : function(){
+			stop();
+		}
+		});
+
+		$('#DOWN').on({
+			mousedown : function(){
+			recule();
+			},
+			mouseup : function(){
+			stop();
+		}
+		});
+
+		$('#LEFT').on({
+			mousedown : function(){
+			gauche();
+			},
+			mouseup : function(){
+			stop();
+		}
+		});
+		$('#RIGHT').on({
+			mousedown : function(){
+			droite();
+			},
+			mouseup : function(){
+			stop();
+		}
+		});
+
+});
+
+function avance() {
+   var xmlHttp = new XMLHttpRequest();
+   console.log("avance");		
+			xmlHttp.open( "GET", "/avance", false ); 
+			xmlHttp.send( null );
+			return xmlHttp.responseText;	
+     
+}
+function recule() {
+   var xmlHttp = new XMLHttpRequest();			
+			xmlHttp.open( "GET", "/recule", false ); 
+			xmlHttp.send( null );
+			return xmlHttp.responseText;	
+     
+}
+function droite() {
+   var xmlHttp = new XMLHttpRequest();			
+			xmlHttp.open( "GET", "/droite", false ); 
+			xmlHttp.send( null );
+			return xmlHttp.responseText;	
+     
+}
+function gauche() {
+   var xmlHttp = new XMLHttpRequest();			
+			xmlHttp.open( "GET", "/gauche", false ); 
+			xmlHttp.send( null );
+			return xmlHttp.responseText;	
+     
+}
+
+
+function stop() {
+	var xmlHttp = new XMLHttpRequest();
+	console.log("stop");
+			xmlHttp.open( "GET", "/stop", false ); 
+			xmlHttp.send( null );
+			return xmlHttp.responseText;	
+}
+
+
+</script>
+
+</body>
+</html>

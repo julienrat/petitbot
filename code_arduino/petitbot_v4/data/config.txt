@@ -1,0 +1,1 @@
+{"name":"PetitBot","invert_motors":"false","mode":"access_point","ssid":"ssid","mdp":"mdp","canal":"9","ip":"ip"}
