@@ -22,7 +22,7 @@ La première solution est de flasher la dernière mouture du code du petitBot.
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/choix_carte.gif "Logo Title Text 1")
 6. Branchez le Wemos et sélectionnez le bon port USB
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/choix_port.gif "Logo Title Text 1")
-7. Installez l'utilitaire de flashage de la mémoire SPIFFS, Téléchargez le fichier https://github.com/julienrat/petitbot/raw/master/code_arduino/petitbot_v3/libraries/esp8266fs.jar
+7. Installez l'utilitaire de flashage de la mémoire SPIFFS, Téléchargez le fichier https://github.com/esp8266/arduino-esp8266fs-plugin/releases/tag/0.4.0
 8. Copiez-collez je fichier esp8266fs.jar dans le répertoire <home_dir>/Arduino/tools/ESP8266FS/tool/esp8266fs.jar
 ![alt text](https://github.com/julienrat/petitbot/blob/master/images/install_plugin.gif "Logo Title Text 1")
 9. Redémarrez Arduino et une nouvelle option "ESP8266 Sketch Data Upload" apparaitra dans le menu Outils
