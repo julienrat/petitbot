@@ -201,8 +201,8 @@ void pageweb() {
   s += "<a href=\"/stop\"\"><button style=\"font-size:200%; width: 18%\"\>Stop </button></a>\r\n";// creer un boutton "Stop"
   s += "<a href=\"/avance\"\"><button style=\"font-size:200%; width: 18%\"\>Avance </button></a>\r\n";
   s += "<a href=\"/recule\"\"><button style=\"font-size:200%; width: 18%\"\>Recule </button></a>\r\n";
-  s += "<a href=\"/droite\"\"><button style=\"font-size:200%; width: 18%\"\>Droite </button></a>\r\n";
-  s += "<a href=\"/gauche\"\"><button style=\"font-size:200%; width: 18%\"\>Gauche </button></a><br />\r\n";
+  s += "<a href=\"/gauche\"\"><button style=\"font-size:200%; width: 18%\"\>Gauche </button></a>\r\n";
+  s += "<a href=\"/droite\"\"><button style=\"font-size:200%; width: 18%\"\>Droite </button></a><br />\r\n";
   s += "</center>";
 
   s += "</html>\n"; //Fin de la page Web
