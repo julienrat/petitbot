@@ -4,13 +4,7 @@
   "home_assistant_domain": "esphome",
   "funding_url": "https://esphome.io/guides/supporters.html",
   "new_install_prompt_erase": false,
-  "builds": [
-    {
-      "chipFamily": "ESP32",
-      "parts": [
-        { "path": "merged-firmware.bin", "offset": 0 },
-      ]
-    },
+  "builds": [   
     {
       "chipFamily": "ESP8266",
       "parts": [
