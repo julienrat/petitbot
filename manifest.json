@@ -14,7 +14,7 @@
     {
       "chipFamily": "ESP8266",
       "parts": [
-        { "path": "esp8266.bin", "offset": 0 }
+        { "path": "https://julienrat.github.io/petitbot/code_arduino/binaires/petitbot_v3/petitbot_v3.ino.d1_mini.bin", "offset": 0 }
       ]
     }
   ]
