@@ -2,9 +2,7 @@
 Fichier Gerber utilisable directement sur le site JCLPCB : [https://jlcpcb.com/]
 
 
-| Are | Cool | |----------|:-------------:| | ![My Image](Shield.svg) | ![My Image](Shield_back.svg) |
-
-| First Header  | Second Header |
+| DESSUS  | DESSOUS |
 | ------------- | ------------- |
 | ![My Image](Shield.svg) | ![My Image](Shield_back.svg) |
 
