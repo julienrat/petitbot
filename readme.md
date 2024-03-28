@@ -10,7 +10,7 @@ Pour flasher le PetitBot plusieures solutions s'offrent à vous :
 1. Compiler les sources arduino en ajoutant les bibliothèques nécessaires
 2. Flasher le wemos à l'aide d'un utilitaire et des binaires
 
-## Compilez les sources (recommandé)
+## Compilez les sources (recommandé).
 La première solution est de flasher la dernière mouture du code du petitBot.
 ### Préparez votre environnement de développement
 1. Installez la dernière version d'arduino disponible ici : https://www.arduino.cc/en/Main/Software
